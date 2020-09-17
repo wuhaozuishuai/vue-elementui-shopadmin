@@ -12,7 +12,7 @@
         <!-- 主体 -->
         <el-container>
             <!-- 侧边栏 -->
-            <el-aside :width="isCollapse ? '64px':'200px'">
+            <el-aside width="200px">
                 <div class="toggle-button" @click="toggleCollapse">|||</div>
 
                 <!--侧边栏 -->
@@ -22,9 +22,6 @@
                         active-text-color="#409Eff"
                         :unique-opened="true"
                         :collapse="isCollapse"
-                        :collapse-transition="false"
-                        :router="true"
-                        :default-active="activePath"
                         >
                     <!-- 一级菜单 -->
                     <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
@@ -36,10 +33,7 @@
                             <span>{{item.authName}}</span>
                         </template>
                         <!-- 二级菜单 -->
-                        <el-menu-item :index="'/'+subItem.path" v-for="subItem in item.children"
-                                      :key="subItem.id"
-                                      @click="saveNavState('/'+subItem.path)"
-                        >
+                        <el-menu-item :index="subItem.id+''" v-for="subItem in item.children" :key="subItem.id">
                             <template slot="title">
                                 <!-- 图标 -->
                                 <i class="el-icon-menu"></i>
@@ -47,15 +41,13 @@
                                 <span>{{subItem.authName}}</span>
                             </template>
                         </el-menu-item>
-
+                        
                     </el-submenu>
 
                 </el-menu>
             </el-aside>
             <!-- 右侧主体 -->
-            <el-main>
-                <router-view></router-view>
-            </el-main>
+            <el-main>Main</el-main>
         </el-container>
     </el-container>
     <!-- </div> -->
@@ -75,15 +67,11 @@
                     '145':'iconfont icon-baobiao',
                 },
                 //是否折叠菜单
-                isCollapse:false,
-                //被激活的链接地址
-                activePath:''
+                isCollapse:false
             }
         },
         created(){
-            this.getMenuList();
-            this.activePath  = window.sessionStorage.getItem('activePath');
-
+            this.getMenuList()
         },
         methods: {
             logout() {
@@ -94,15 +82,11 @@
                 const {data:res} = await this.$http.get('/menus')
                 if(res.meta.status !== 200) return this.$message.error(res.meta.msg)
                 this.menuList = res.data
+                console.log(this.menuList);
             },
             //点击按钮，切换菜单展开与折叠
             toggleCollapse(){
                 this.isCollapse  = !this.isCollapse
-            },
-            //保存链接激活状态
-            saveNavState(activePath){
-                window.sessionStorage.setItem('activePath',activePath);
-                this.activePath = activePath
             }
         },
     }

@@ -13,6 +13,7 @@ Vue.config.productionTip = false
 axios.defaults.baseURL  = 'http://49.234.103.109:8888/api/private/v1';
 //设置请求拦截器,挂载Authorization的token令牌
 axios.interceptors.request.use((config)=>{
+  console.log(config);
   config.headers.Authorization  =window.sessionStorage.getItem('token')
   //最后必须return config
   return config
