@@ -20,8 +20,10 @@ import {
     Table,
     TableColumn,
     Switch,
-    Tooltip
-
+    Tooltip,
+    Pagination,
+    Dialog,
+    MessageBox
 } from 'element-ui'
 //弹窗提示
 
@@ -45,4 +47,9 @@ Vue.use(Table)
 Vue.use(Switch)
 Vue.use(TableColumn)
 Vue.use(Tooltip)
-Vue.prototype.$message = Message
+Vue.use(Pagination)
+Vue.use(Dialog)
+// Vue.use(MessageBox)
+
+Vue.prototype.$message = Message;
+Vue.prototype.$confirm = MessageBox.confirm
