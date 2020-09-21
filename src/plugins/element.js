@@ -23,7 +23,11 @@ import {
     Tooltip,
     Pagination,
     Dialog,
-    MessageBox
+    MessageBox,
+    Tag,
+    Tree,
+    Select,
+    Option
 } from 'element-ui'
 //弹窗提示
 
@@ -49,6 +53,10 @@ Vue.use(TableColumn)
 Vue.use(Tooltip)
 Vue.use(Pagination)
 Vue.use(Dialog)
+Vue.use(Tag)
+Vue.use(Tree)
+Vue.use(Option)
+Vue.use(Select)
 // Vue.use(MessageBox)
 
 Vue.prototype.$message = Message;
