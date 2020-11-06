@@ -201,7 +201,7 @@
             },
             //确认添加/修改角色
             addRole() {
-                if (this.dialogType == 0) {
+                if (this.dialogType === 0) {
                     this.$refs.addFormRef.validate(async valid => {
                         if (!valid) return;//预校验失败
                         //校验成功，执行操作
@@ -211,7 +211,7 @@
                         this.dialogVisible = false;
                         await this.getRolesList();
                     })
-                } else if (this.dialogType == 1) {
+                } else if (this.dialogType === 1) {
                     this.$refs.addFormRef.validate(async valid => {
                         if (!valid) return;//预校验失败
                         //校验成功，执行操作
